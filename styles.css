@@ -1,9 +1,10 @@
-/* ====== Base / Reset ====== */
 :root{
   --accent: #f3a532;
   --dark: #2f2f2f;
+  --darker: #262626;
   --light: #ffffff;
   --text: #1b1b1b;
+  --radius: 12px;
 }
 
 *{ box-sizing: border-box; }
@@ -15,77 +16,99 @@ body{
   color: var(--text);
 }
 
-/* ====== Contenedor CV (layout principal) ====== */
+/* ===== Layout principal (Flexbox) ===== */
 .cv{
-  width: 92%;
-  max-width: 980px;
+  width: min(980px, 92vw);
   margin: 40px auto 18px;
+  display: flex;
   background: var(--light);
-  border: 1px solid #dcdcdc;
-  display: flex;               /* intermedio: flex */
-  position: relative;          /* para que la foto absolute se ancle aquí */
+  border-radius: var(--radius);
   overflow: hidden;
+  position: relative;
+  border: 1px solid #dcdcdc; /* reemplaza box-shadow (nivel avanzado) */
 }
 
-/* ====== Columnas ====== */
+/* Columna izquierda */
 .left{
   width: 60%;
-  padding: 235px 40px 30px;    /* espacio arriba para que no choque con la foto */
+  padding: 235px 40px 36px; /* ✅ MÁS espacio arriba para que NO choque con la foto */
   background: var(--light);
+  position: relative;
 }
 
+/* Columna derecha */
 .right{
   width: 40%;
-  padding: 22px 28px 30px;
+  padding: 22px 28px 36px;
   background: var(--dark);
   color: #f7f7f7;
+  position: relative;
 }
 
-/* ====== Foto (aún “work in progress”) ======
-   - Ya no se monta con “Formación”
-   - Pero todavía NO está perfecta al 100% (queda un poquito más a la izquierda)
-*/
+/* ===== Foto circular (position + box model) ===== */
 .photo-wrap{
   position: absolute;
   top: 26px;
-  left: 40px;                 /* después la centras fino */
+  left: 200px; /* ✅ mejor alineada dentro de la izquierda */
   width: 175px;
   height: 175px;
   border-radius: 50%;
   overflow: hidden;
   border: 7px solid #343434;
   background: #111;
+  z-index: 3;
 }
 
 .photo{
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
-/* ====== Encabezados izquierda (simple, sin triángulo todavía) ====== */
+/* ===== Encabezados izquierda (pseudo-elementos) ===== */
 .left-heading{
   display: inline-block;
   margin: 0 0 12px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   background: var(--accent);
   color: #1a1a1a;
   text-transform: uppercase;
-  letter-spacing: .06em;
+  letter-spacing: .08em;
   font-size: 13px;
+  position: relative;
 }
 
-/* ====== Timeline (versión básica: aún sin grid) ====== */
+.left-heading::after{
+  content: "";
+  position: absolute;
+  right: -12px;
+  top: 0;
+  width: 0;
+  height: 0;
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  border-left: 12px solid var(--accent);
+}
+
+/* ===== Timeline (Grid + nth-child) ===== */
 .timeline{
   list-style: none;
   margin: 0 0 18px;
   padding: 0;
+  display: grid;
+  gap: 10px;
 }
 
 .timeline li{
-  padding: 10px 0 10px 18px;
+  display: grid;
+  grid-template-columns: 145px 1fr;
+  gap: 12px;
+  padding: 10px 0;
   border-bottom: 1px solid #ececec;
   position: relative;
+  padding-left: 18px;
 }
 
 .timeline li::before{
@@ -98,12 +121,14 @@ body{
   background: var(--accent);
 }
 
+.timeline li:nth-child(2)::before{
+  background: #d78b22;
+}
+
 .time{
-  display: block;
   font-weight: bold;
   font-size: 12px;
   color: #444;
-  margin-bottom: 4px;
 }
 
 .info strong{
@@ -117,16 +142,22 @@ body{
   color: #555;
 }
 
-/* ====== Referencias (card simple) ====== */
+/* ===== Referencias izquierda ===== */
+.refs{
+  margin-top: 8px;
+  display: grid;
+  gap: 10px;
+}
+
 .ref-card{
   background: #fafafa;
   border: 1px solid #ededed;
+  border-radius: 10px;
   padding: 12px 14px;
-  margin-top: 10px;
 }
 
 .ref-name{
-  margin: 0 0 6px;
+  margin: 0 0 4px;
   font-weight: bold;
 }
 
@@ -136,12 +167,16 @@ body{
   color: #444;
 }
 
-/* ====== Derecha: “Sígueme” básico con float ====== */
+/* ===== Top derecha: “Sígueme” (float + clear) ===== */
+.follow{
+  margin-bottom: 14px;
+}
+
 .follow p{
   margin: 0;
   font-size: 12px;
-  float: left;
   opacity: .85;
+  float: left;
 }
 
 .social{
@@ -155,11 +190,11 @@ body{
 }
 
 .social a{
-  display: inline-block;
+  display: inline-flex;
   width: 24px;
   height: 24px;
-  line-height: 24px;
-  text-align: center;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
   border: 1px solid rgba(255,255,255,.55);
   color: #fff;
@@ -168,43 +203,59 @@ body{
   margin-left: 6px;
 }
 
+/* pseudo-clases (intermedio) */
 .social a:hover{
   background: rgba(255,255,255,.08);
 }
+.social a:active{
+  background: rgba(255,255,255,.14);
+}
 
-/* ====== Barra nombre (simple, sin gradiente) ====== */
+/* ===== Barra naranja nombre (SIN gradiente, SIN animación) ===== */
 .namebar{
   margin-top: 14px;
-  margin-bottom: 16px;
-  padding: 16px;
-  background: var(--accent);
+  margin-bottom: 18px;
+  padding: 16px 16px 16px 78px;
+  background: var(--accent); /* ✅ reemplaza linear-gradient */
   color: #1a1a1a;
+  position: relative;
 }
 
 .namebar h1{
   margin: 0;
   font-size: 20px;
+  letter-spacing: .02em;
 }
 
 .namebar p{
   margin: 4px 0 0;
   font-size: 13px;
+  opacity: .85;
 }
 
-/* ====== Títulos tipo “píldora” (simple) ====== */
+/* ===== Títulos derecha tipo “píldora” ===== */
 .pill{
   display: inline-block;
   margin: 14px 0 10px;
-  padding: 6px 14px;
+  padding: 6px 16px;
   border: 2px solid var(--accent);
   border-radius: 999px;
   color: var(--accent);
   text-transform: uppercase;
+  letter-spacing: .08em;
   font-size: 12px;
-  letter-spacing: .06em;
+  position: relative;
 }
 
-/* ====== Contacto (simple) ====== */
+.pill::before{
+  content:"";
+  position:absolute;
+  inset: 3px;
+  border: 1px solid rgba(243,165,50,.35);
+  border-radius: 999px;
+}
+
+/* ===== Contacto derecha ===== */
 .contact{
   list-style: none;
   margin: 0 0 10px;
@@ -213,36 +264,91 @@ body{
 }
 
 .contact li{
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
   margin: 8px 0;
 }
 
-/* ====== Skills (por ahora “a medias”: solo texto, sin barras finas) ====== */
+.icon{
+  width: 18px;
+  text-align: center;
+  opacity: .9;
+}
+
+/* ===== Barras skills ===== */
 .skills{
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .skill{
+  display: grid;
+  grid-template-columns: 1fr 92px;
+  gap: 12px;
+  align-items: center;
   margin: 8px 0;
   font-size: 12px;
 }
 
-.label{
-  display: inline-block;
-  margin-bottom: 4px;
+.label{ opacity: .95; }
+
+.meter{
+  height: 6px;
+  background: rgba(255,255,255,.18);
+  border-radius: 999px;
+  overflow: hidden;
+  position: relative;
 }
 
-/* (pendiente) barras reales de progreso */
+.meter::before{
+  content:"";
+  position:absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: var(--p, 60%);
+  background: var(--accent);
+  border-radius: 999px;
+}
 
-/* ====== Tags (pendiente: solo lista sin estilo fancy) ====== */
+/* ===== Tags ===== */
 .tags{
+  list-style: none;
+  padding: 0;
   margin: 0 0 10px;
-  padding-left: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* ====== Botón (simple) ====== */
+.tags li{
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  font-size: 12px;
+}
+
+.ref-card--dark{
+  background: rgba(0,0,0,.12);
+  border: 1px solid rgba(255,255,255,.14);
+}
+
+.ref-card--dark .ref-meta{
+  color: rgba(255,255,255,.8);
+}
+
+/* ===== CTA ===== */
+.cta{
+  width: min(980px, 92vw);
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
 .btn{
   border: none;
   padding: 12px 18px;
+  border-radius: 10px;
   background: var(--accent);
   color: #1a1a1a;
   font-weight: bold;
@@ -250,16 +356,25 @@ body{
 }
 
 .btn:hover{
-  background: #f0a022;
+  background: #f0a022; /* sin transition */
 }
 
-/* ====== Responsive básico ====== */
+.btn:active{
+  background: #e0921e;
+}
+
+/* ===== Responsive (media queries) ===== */
 @media (max-width: 860px){
   .cv{ flex-direction: column; }
   .left, .right{ width: 100%; }
-  .left{ padding: 235px 22px 26px; }
+
+  .left{ padding: 220px 22px 26px; }
   .right{ padding: 18px 22px 26px; }
 
-  /* en móvil la foto queda alineada a la izquierda (pendiente centrarla) */
-  .photo-wrap{ left: 22px; }
+  .photo-wrap{
+    left: 50%;
+    transform: translateX(-50%); /* si esto NO está en tus temas, dime y lo quitamos */
+  }
+
+  .namebar{ padding-left: 16px; }
 }
