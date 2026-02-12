@@ -1,79 +1,156 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Hoja de vida</title>
-    </head>
-    <body>
-        <table width="100%">
-            <tr>
-                <td width="60%" align="left" valign="top">
-                    <div>
-                        <br>
-                        <center>
-                            <img src="Imagenes/Foto perfil.jpg" alt="Foto perfil" width="200">
-                        </center>
-                        <center><h1>Formacion</h1></center>
-                        <ul>
-                            <li> Noviembre 2023 - Henry</li>
-                            <p>Bogota DC - Desarrollador Full Stack</p>
-                            <br>
-                            <li> Enero 2025 - Universidad de la Sabana</li>
-                            <p>Bogota DC - Ingenieria Informatica</p>
-                        </ul>
-                        <br>
-                        <center><h1>Experiencia</h1></center>
-                        <ul>
-                            <li>Junio 2025 - Presente  |  Analista y Mantenimiento de Software</li>
-                            <p>Bogota DC, Colombia  | ME inmobiliaria</p>
-                        </ul>
-                        <center><h1>Referencias</h1></center>
-                    </div>
-                </td>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hoja de vida</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-                <td width="40%" align="rigth" valign="top">
-                    <div>
-                        <center><h3>Redes</h3></center>
-                        <br>
-                        <h2>Ethian White</h2>
-                        <p>Ingeniero Informatico</p>
-                        <br>
-                        <br>
-                        <center><h1>Contacto</h1></center>
-                        <p>calle 83 #14-7</p>
-                        <p>+57 300 123 3458</p>
-                        <p>contactame@amiysoloami.com</p>
-                        <br>
-                        <center><h1>Lenguajes</h1></center>
-                        <ul>
-                            <li> Español C2</li>
-                            <li> Ingles C1</li>
-                        </ul>
-                        <br>
-                        <center><h1>Habilidades</h1></center>
-                        <ul>
-                            <li>Javascript</li>
-                            <li>Python</li>
-                            <li>React</li>
-                            <li>Redux</li>
-                            <li>NodeJS</li>
-                            <li>PostgreSQL</li>
-                            <li>HTML</li>
-                            <li>CSS</li>
-                            <li>Java</li>
-                            <li>Linux</li>
-                            <li>Pruebas de penetración</li>
-                            <li>VAPT</li>
-                        </ul>
-                        <br>
-                        <center><h1>Referencias</h1></center>
-                    </div>
-                </td>
-            </tr>
+  <body>
+    <main class="cv">
+      <!-- Foto circular (encima de las dos columnas) -->
+      <div class="photo-wrap">
+        <img
+          class="photo"
+          src="Imagenes/Foto perfil.jpg"
+          alt="Foto perfil"
+        />
+      </div>
 
-        </table>
-        <h3>Ponte en Contacto</h3>
-        <button onclick="window.location.href='Ethian-White-reto-html-2026-1-formulario-contacto.html'">Contactame</button>
-    </body>
+      <!-- Columna izquierda -->
+      <section class="left">
+        <h2 class="left-heading">Formación</h2>
+
+        <ul class="timeline">
+          <li>
+            <span class="time">Noviembre 2023</span>
+            <div class="info">
+              <strong>Henry</strong>
+              <p>Bogotá DC — Desarrollador Full Stack</p>
+            </div>
+          </li>
+
+          <li>
+            <span class="time">Enero 2025</span>
+            <div class="info">
+              <strong>Universidad de La Sabana</strong>
+              <p>Bogotá DC — Ingeniería Informática</p>
+            </div>
+          </li>
+        </ul>
+
+        <h2 class="left-heading">Experiencia</h2>
+
+        <ul class="timeline">
+          <li>
+            <span class="time">Junio 2023 — Presente</span>
+            <div class="info">
+              <strong>Analista y Mantenimiento de Software</strong>
+              <p>Bogotá DC, Colombia — ME Inmobiliaria</p>
+            </div>
+          </li>
+        </ul>
+
+        <h2 class="left-heading">Referencias</h2>
+
+        <div class="refs">
+          <div class="ref-card">
+            <p class="ref-name">Referencia 1</p>
+            <p class="ref-meta">Cargo / Empresa</p>
+            <p class="ref-meta">Tel: +57 300 000 0000</p>
+            <p class="ref-meta">Email: ejemplo@correo.com</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Columna derecha -->
+      <aside class="right">
+        <!-- Top (sígueme + redes) -->
+        <div class="follow">
+          <p>Sígueme:</p>
+          <div class="social">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="GitHub">GH</a>
+            <a href="#" aria-label="Web">↗</a>
+          </div>
+        </div>
+
+        <!-- Barra naranja con nombre -->
+        <header class="namebar">
+          <h1>Ethian White</h1>
+          <p>Ingeniero Informático</p>
+        </header>
+
+        <h2 class="pill">Contacto</h2>
+        <ul class="contact">
+          <li><span class="icon">📍</span><span>calle 83 #14-7</span></li>
+          <li><span class="icon">📞</span><span>+57 300 123 3458</span></li>
+          <li><span class="icon">✉️</span><span>contactame@amiysoloami.com</span></li>
+        </ul>
+
+        <h2 class="pill">Lenguajes</h2>
+        <div class="skills">
+          <div class="skill">
+            <span class="label">Español</span>
+            <span class="meter" style="--p: 95%"></span>
+          </div>
+          <div class="skill">
+            <span class="label">Inglés</span>
+            <span class="meter" style="--p: 85%"></span>
+          </div>
+        </div>
+
+        <h2 class="pill">Tecnologías</h2>
+        <div class="skills">
+          <div class="skill">
+            <span class="label">JavaScript</span>
+            <span class="meter" style="--p: 90%"></span>
+          </div>
+          <div class="skill">
+            <span class="label">Python</span>
+            <span class="meter" style="--p: 85%"></span>
+          </div>
+          <div class="skill">
+            <span class="label">React</span>
+            <span class="meter" style="--p: 80%"></span>
+          </div>
+          <div class="skill">
+            <span class="label">NodeJS</span>
+            <span class="meter" style="--p: 75%"></span>
+          </div>
+        </div>
+
+        <h2 class="pill">Otras habilidades</h2>
+        <ul class="tags">
+          <li>Redux</li>
+          <li>PostgreSQL</li>
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Java</li>
+          <li>Linux</li>
+          <li>Pruebas de penetración</li>
+          <li>VAPT</li>
+        </ul>
+
+        <h2 class="pill">Referencia</h2>
+        <div class="ref-card ref-card--dark">
+          <p class="ref-name">Referencia 2</p>
+          <p class="ref-meta">Cargo / Empresa</p>
+          <p class="ref-meta">Tel: +57 300 000 0000</p>
+          <p class="ref-meta">Email: ejemplo@correo.com</p>
+        </div>
+      </aside>
+    </main>
+
+    <section class="cta">
+      <h3>Ponte en contacto</h3>
+      <button
+        class="btn"
+        onclick="window.location.href='Ethian-White-reto-html-2026-1-formulario-contacto.html'"
+      >
+        Contáctame
+      </button>
+    </section>
+  </body>
 </html>
